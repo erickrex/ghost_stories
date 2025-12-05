@@ -1,0 +1,32 @@
+/**
+ * WordPress Stories Block - Gutenberg Block Specific Styles
+ * Solo estilos específicos del bloque de Gutenberg
+ */
+
+/* Block Container - Solo para el bloque de Gutenberg */
+.wp-stories-block {
+    margin: 15px 0;
+}
+
+/* Responsive block margins */
+@media (min-width: 768px) {
+    .wp-stories-block {
+        margin: 20px 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .wp-stories-block {
+        margin: 25px 0;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .wp-stories-block {
+        display: none !important;
+    }
+}
+
+/* NOTA: Todos los estilos de frontend (.wp-stories-circles, .wp-stories-circle, etc.) 
+   se han movido a assets/css/frontend.css para evitar duplicaciones y conflictos */

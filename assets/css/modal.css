@@ -1,0 +1,560 @@
+/* ============================================
+   Ghost Stories - Modal Styles
+   ============================================ */
+
+/* ============================================
+   Modal
+   ============================================ */
+.wp-stories-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    display: none;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wp-stories-modal.active {
+    display: flex !important;
+    opacity: 1 !important;
+    align-items: center;
+    justify-content: center;
+    animation: modalSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.wp-stories-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(20, 20, 30, 0.95));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.wp-stories-modal-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 100%;
+    background: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   Modal Header
+   ============================================ */
+.wp-stories-header {
+    padding: 0;
+    background: transparent;
+    position: relative;
+    z-index: 20;
+}
+
+.wp-stories-progress-container {
+    display: flex;
+    gap: 6px;
+    height: 4px;
+    margin-bottom: 15px;
+}
+
+.wp-stories-progress-segment {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.wp-stories-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffffff, #f0f0f0);
+    width: 0%;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    transition: none; /* Removed transition - now controlled by JavaScript for smooth animation */
+}
+
+.wp-stories-progress-segment.active .wp-stories-progress-fill {
+    /* Animation removed - now controlled by JavaScript */
+}
+
+.wp-stories-progress-segment.completed .wp-stories-progress-fill {
+    width: 100%;
+}
+
+/* Header Controls */
+.wp-stories-header-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.wp-stories-sound-control,
+.wp-stories-play-control {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wp-stories-sound-control svg,
+.wp-stories-play-control svg {
+    width: 45px;
+    height: 45px;
+    fill: #ffffff;
+}
+
+/* Controls container */
+.wp-stories-header-controls-left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.wp-stories-header-controls-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Decorative Overlay styles moved to media container */
+
+/* Overlay decorativo eliminado - no se necesita */
+
+.wp-stories-modal-close {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    font-size: 45px;
+    font-weight: bold;
+    pointer-events: auto;
+}
+
+/* ============================================
+   Media Container
+   ============================================ */
+.wp-stories-media-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: calc(100% - 40px);
+}
+
+/* Progress Bar Overlay */
+.wp-stories-progress-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 30;
+    pointer-events: none;
+}
+
+.wp-stories-progress-overlay .wp-stories-progress-container {
+    margin-bottom: 0;
+}
+
+/* Controls Overlay */
+.wp-stories-controls-overlay {
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    z-index: 30;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Decorative overlay completamente oculto */
+.wp-stories-media-container .wp-stories-decorative-overlay {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+}
+
+.wp-stories-media-wrapper img,
+.wp-stories-media-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Video specific styles */
+.wp-stories-media-wrapper video {
+    background: #000;
+}
+
+/* Hide native video controls */
+.wp-stories-media-wrapper video::-webkit-media-controls {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-volume-slider {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-mute-button {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-timeline {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-current-time-display {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-time-remaining-display {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+}
+
+.wp-stories-media-wrapper video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+}
+
+/* Hide controls for other browsers */
+.wp-stories-media-wrapper video[controls] {
+    controls: none;
+}
+
+/* Image specific styles */
+.wp-stories-media-wrapper img {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.wp-stories-navigation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.wp-stories-nav-prev,
+.wp-stories-nav-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.wp-stories-nav-prev {
+    left: 20px;
+}
+
+.wp-stories-nav-next {
+    right: 20px;
+}
+
+.wp-stories-nav-prev:hover,
+.wp-stories-nav-next:hover {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.wp-stories-modal:hover .wp-stories-nav-prev,
+.wp-stories-modal:hover .wp-stories-nav-next {
+    opacity: 1;
+}
+
+/* ============================================
+   Story Navigation Indicators (Vertical) - HIDDEN
+   ============================================ */
+.wp-stories-story-nav-up,
+.wp-stories-story-nav-down {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+
+/* Touch-friendly navigation areas - Completamente invisibles */
+.wp-stories-nav-prev::before,
+.wp-stories-nav-next::before {
+    display: none;
+    content: none;
+}
+
+/* ============================================
+   Touch Areas - Completamente invisibles
+   ============================================ */
+.wp-stories-touch-areas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.wp-stories-touch-prev,
+.wp-stories-touch-next {
+    display: none;
+    pointer-events: none;
+}
+
+.wp-stories-touch-center {
+    display: none;
+    pointer-events: none;
+}
+
+/* ============================================
+   Loading & Error States
+   ============================================ */
+.wp-stories-loading,
+.wp-stories-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 25;
+}
+
+.wp-stories-loading {
+    font-size: 18px;
+}
+
+.wp-stories-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Utilities
+   ============================================ */
+body.wp-stories-modal-open {
+    overflow: hidden;
+}
+
+/* Eliminar todos los efectos de selección y focus */
+.wp-stories-modal *,
+.wp-stories-modal *:focus,
+.wp-stories-modal *:active,
+.wp-stories-modal *:hover {
+    outline: none !important;
+    outline-offset: 0 !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* ============================================
+   Focus States - Eliminados completamente
+   ============================================ */
+.wp-stories-modal-close:focus,
+.wp-stories-nav-prev:focus,
+.wp-stories-nav-next:focus,
+.wp-stories-play-control:focus,
+.wp-stories-sound-control:focus,
+.wp-stories-modal-close:active,
+.wp-stories-nav-prev:active,
+.wp-stories-nav-next:active,
+.wp-stories-play-control:active,
+.wp-stories-sound-control:active {
+    outline: none !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* ============================================
+   Mobile Responsive Styles
+   ============================================ */
+@media (max-width: 768px) {
+    /* Modal Content - Full screen sin bordes */
+    .wp-stories-modal-content {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    /* Media Container - Full screen sin bordes */
+    .wp-stories-media-container {
+        border-radius: 0;
+        height: 100%;
+    }
+
+    /* Progress Bar - Más cerca del borde superior */
+    .wp-stories-progress-overlay {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+    /* Controls - Más cerca del borde derecho */
+    .wp-stories-controls-overlay {
+        right: 10px;
+    }
+
+    /* Overlay decorativo eliminado - no se necesita */
+
+    /* Navigation buttons - Área de toque invisible en móvil */
+    .wp-stories-nav-prev,
+    .wp-stories-nav-next {
+        width: 35%;
+        height: 80%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        opacity: 0;
+        font-size: 0;
+        color: transparent;
+    }
+
+    .wp-stories-nav-prev {
+        left: 0;
+    }
+
+    .wp-stories-nav-next {
+        right: 0;
+    }
+
+    /* Ocultar iconos */
+    .wp-stories-nav-prev span,
+    .wp-stories-nav-next span {
+        display: none;
+    }
+
+    /* Eliminar todos los efectos hover/active/focus en móvil */
+    .wp-stories-nav-prev:hover,
+    .wp-stories-nav-next:hover,
+    .wp-stories-nav-prev:active,
+    .wp-stories-nav-next:active,
+    .wp-stories-nav-prev:focus,
+    .wp-stories-nav-next:focus {
+        opacity: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        transform: translateY(-50%) !important;
+    }
+
+    /* Sobrescribir efectos hover globales en móvil */
+    .wp-stories-modal:hover .wp-stories-nav-prev,
+    .wp-stories-modal:hover .wp-stories-nav-next {
+        opacity: 0 !important;
+        background: transparent !important;
+        transform: translateY(-50%) !important;
+    }
+    
+    /* Hide story navigation buttons on mobile */
+    .wp-stories-story-nav-up,
+    .wp-stories-story-nav-down {
+        display: none !important;
+    }
+}

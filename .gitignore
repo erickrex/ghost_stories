@@ -1,0 +1,56 @@
+# WordPress
+.htaccess
+wp-config.php
+wp-content/uploads/
+wp-content/blogs.dir/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/
+wp-content/cache/supercache/
+
+# Plugin development
+*.log
+*.sql
+*.sqlite
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (if using build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Build files
+/assets/css/*.min.css
+/assets/js/*.min.js
+
+# PHP
+composer.phar
+/vendor/
+composer.lock
+
+# Backup and temporary documentation files
+*.backup
+*.bak
+*.old
+emergency-*.sh
+emergency-*.php
+*-debug.php
+clear-php-cache.php
+fix-*.php
+test-*.php
+

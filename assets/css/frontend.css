@@ -1,0 +1,241 @@
+/**
+ * Ghost Stories - Frontend Styles
+ * Clean and modern version
+ */
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+Australia+Tasmania:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   Variables CSS
+   ============================================ */
+:root {
+    --stories-primary: #e91e63;
+    --stories-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    --stories-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --stories-transition: 0.3s ease;
+}
+
+/* ============================================
+   Story Circles Container
+   ============================================ */
+
+.wp-stories-circles {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 4px;
+    -webkit-overflow-scrolling: touch;
+    padding: 0;
+}
+
+.wp-stories-circles::-webkit-scrollbar {
+    display: none;
+}
+
+/* Alineación */
+.wp-stories-align-left .wp-stories-circles { justify-content: flex-start; }
+.wp-stories-align-center .wp-stories-circles { justify-content: center; }
+.wp-stories-align-right .wp-stories-circles { justify-content: flex-end; }
+
+/* ============================================
+   Story Circle
+   ============================================ */
+.wp-stories-circle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    cursor: pointer;
+}
+
+/* Circle Inner Container - Mobile First */
+.wp-stories-circle-inner {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    position: relative;
+    z-index: 5;
+    /* Ensure minimum touch target */
+    min-width: 44px;
+    min-height: 44px;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   Story Circle - Técnica con padding y gradiente
+   ============================================ */
+    .wp-stories-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+        display: flex;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.wp-stories-circle-content {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wp-stories-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ============================================
+   Video Thumbnails
+   ============================================ */
+
+/* Video thumbnail canvas */
+.wp-stories-video-thumbnail {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: #f0f0f0;
+}
+
+/* Fallback para videos sin thumbnail */
+.wp-stories-video-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 24px;
+}
+
+/* Hidden video elements */
+.wp-stories-video-hidden {
+    display: none;
+}
+
+/* Fix para el círculo ovalado - aplicado a todos los círculos */
+.wp-stories-circle-wrapper .wp-stories-circle-inner {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 90px;
+    height: 90px;
+    transform: none;
+    box-sizing: border-box;
+}
+
+.wp-stories-circle-label {
+    font-size: 12px;
+    color: #F472A9;
+    text-align: center;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    font-weight: 600;
+    font-family: 'Playwrite Australia Tasmania', cursive;
+}
+
+.wp-stories-circle-subtitle {
+    font-size: 12px;
+    color: #EC4849;
+    text-align: center;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    font-weight: 500;
+    font-family: 'Playwrite Australia Tasmania', cursive;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Tablet */
+@media (min-width: 768px) {
+    
+    .wp-stories-circle-inner {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .wp-stories-circle {
+        width: 100px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    
+    .wp-stories-circle-inner {
+        width: 110px;
+        height: 110px;
+    }
+    
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+    
+    .wp-stories-circle-inner {
+        width: 120px;
+        height: 120px;
+    }
+    
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+.wp-stories-circle:focus {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .wp-stories-circle-inner {
+        background: #000;
+        border: 2px solid #000;
+    }
+}
+
+/* ============================================
+   Utilities
+   ============================================ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
